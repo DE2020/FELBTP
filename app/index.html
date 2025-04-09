@@ -27,7 +27,7 @@
                     return Controller.extend("PreviewController", {
                         onInit: function () {
 
-                            const data = {"Services":[{"ServiceName":"fELSrv","DetailsURL":"./service/fEL/","Metadata":"./service/fEL/$metadata","Entities":[{"Name":"EDOCTypes","URL":"./service/fEL/EDOCTypes","FioriURL":"$fiori-preview/fELSrv/EDOCTypes#preview-app"}],"EntitiesCount":1}]}
+                            const data = {"Services":[]}
                             this.getView().setModel(new JSONModel(data));
                         }
                     });
