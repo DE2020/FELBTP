@@ -7,6 +7,40 @@ using
 }
 from '@sap/cds/common';
 
+entity EDocStatus : managed
+{
+    key statusID : String(2);
+    description : String(40) not null;
+    statusBase : enumEDOCStatusBase;
+    eDocs : Association to many EDoc on eDocs.status = $self;
+}
+
+annotate EDocStatus with @assert.unique :
+{
+    statusID : [ statusID ],
+};
+
+entity EDocTypes : managed
+{
+    key typeId : String(3)
+        @mandatory
+        @Core.Description : 'Description';
+    description : localized String(60);
+    typeERP : enumEDOCTypeERP;
+    eDocs : Composition of many EDoc on eDocs.type = $self;
+}
+
+annotate EDocTypes with @assert.unique :
+{
+    typeId : [ typeId ],
+};
+
+entity EDoc : cuid, managed
+{
+    type : Association to EDocTypes;
+    status : Association to EDocStatus;
+}
+
 type enumEDOCStatusBase : String enum
 {
     New = 'N';
@@ -15,36 +49,8 @@ type enumEDOCStatusBase : String enum
     Error = 'E';
 }
 
-
-entity EDocTypes : managed
+type enumEDOCTypeERP : String enum
 {
-    key typeId : String(3)
-        @mandatory
-        @Core.Description : 'Description';
-    description : localized String(60);
+    invoiceSD = 'V1';
+    DocFI = 'F1';
 }
-
-annotate EDocTypes with @assert.unique :
-{
-    typeId : [ typeId ],
-};
-
-entity EDocStatus : managed
-{
-    key statusID : String(2);
-    description : String(40) not null;
-    statusBase: enumEDOCStatusBase;
-
-}
-
-annotate EDocStatus with @assert.unique :
-{
-    statusID : [ statusID ],
-};
-
-entity EDoc : cuid, managed
-{
-    type : Association to one EDocTypes;
-    status : Association to one EDocStatus;
-}
-
