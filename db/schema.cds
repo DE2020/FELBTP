@@ -7,6 +7,15 @@ using
 }
 from '@sap/cds/common';
 
+type enumEDOCStatusBase : String enum
+{
+    New = 'N';
+    Parcial = 'P';
+    Finish = 'F';
+    Error = 'E';
+}
+
+
 entity EDocTypes : managed
 {
     key typeId : String(3)
@@ -24,6 +33,8 @@ entity EDocStatus : managed
 {
     key statusID : String(2);
     description : String(40) not null;
+    statusBase: enumEDOCStatusBase;
+
 }
 
 annotate EDocStatus with @assert.unique :
@@ -37,10 +48,3 @@ entity EDoc : cuid, managed
     status : Association to one EDocStatus;
 }
 
-type enumEDOCStatusBase : String enum
-{
-    New = 'N';
-    Parcial = 'P';
-    Finish = 'F';
-    Error = 'E';
-}
