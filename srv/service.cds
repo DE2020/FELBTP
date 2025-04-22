@@ -1,28 +1,18 @@
-using { FEL as FE } from '../db/schema.cds';
+using { FEL as my } from '../db/schema.cds';
 
 
-service AdminService @(path: '/admin')
-{
-    annotate EDocStatus 
-    {
-        createdAt
-            @Core.Immutable : null;
-        createdBy
-            @Core.Immutable : null;
-    }
+@requires: 'authenticated-user'
+service fELSrv @(path:'/service/fEL'){
+    @readonly
+    entity EDocStatus as projection on my.EDocStatus;
+    entity EDocTypes as projection on my.EDocTypes;
 
-    entity EDocStatus as
-        projection on FE.EDocStatus
-        {
-            *
-        }
-        excluding
-        {
-            eDocs
-        };
 }
 
-annotate AdminService with @requires :
-[
-    'authenticated-user'
-];
+@requires: 'authenticated-user'
+service fELConfigSrv @(path:'/service/Admin') {
+
+    entity EDocStatus as projection on my.EDocStatus;
+    entity EDocTypes as projection on my.EDocTypes;
+
+}

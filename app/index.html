@@ -27,7 +27,7 @@
                     return Controller.extend("PreviewController", {
                         onInit: function () {
 
-                            const data = {"Services":[{"ServiceName":"fELSrv","DetailsURL":"./service/fEL/","Metadata":"./service/fEL/$metadata","Entities":[{"Name":"EDocStatus","URL":"./service/fEL/EDocStatus","FioriURL":"$fiori-preview/fELSrv/EDocStatus#preview-app"}],"EntitiesCount":1}]}
+                            const data = {"Services":[{"ServiceName":"fELSrv","DetailsURL":"./service/fEL/","Metadata":"./service/fEL/$metadata","Entities":[{"Name":"EDocStatus","URL":"./service/fEL/EDocStatus","FioriURL":"$fiori-preview/fELSrv/EDocStatus#preview-app"},{"Name":"EDocTypes","URL":"./service/fEL/EDocTypes","FioriURL":"$fiori-preview/fELSrv/EDocTypes#preview-app"}],"EntitiesCount":2},{"ServiceName":"fELConfigSrv","DetailsURL":"./service/Admin/","Metadata":"./service/Admin/$metadata","Entities":[{"Name":"EDocStatus","URL":"./service/Admin/EDocStatus","FioriURL":"$fiori-preview/fELConfigSrv/EDocStatus#preview-app"},{"Name":"EDocTypes","URL":"./service/Admin/EDocTypes","FioriURL":"$fiori-preview/fELConfigSrv/EDocTypes#preview-app"}],"EntitiesCount":2}]}
                             this.getView().setModel(new JSONModel(data));
                         }
                     });

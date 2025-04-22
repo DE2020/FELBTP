@@ -1,0 +1,7 @@
+statusID;description;statusBase
+NW;New;N
+FN;Finish;F
+ER;Error;E
+E1;Communication Error;E
+P1;Confirmed Shipping;P
+P2;Print Confirmed;P

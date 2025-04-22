@@ -7,12 +7,12 @@ using
 }
 from '@sap/cds/common';
 
-entity EDocStatus : managed
+entity EDocStatus
 {
     key statusID : String(2);
     description : String(40) not null;
     statusBase : enumEDOCStatusBase;
-    eDocs : Association to many EDoc on eDocs.status = $self;
+    eDocs : Composition of many EDoc on eDocs.status = $self;
 }
 
 annotate EDocStatus with @assert.unique :
@@ -20,7 +20,7 @@ annotate EDocStatus with @assert.unique :
     statusID : [ statusID ],
 };
 
-entity EDocTypes : managed
+entity EDocTypes
 {
     key typeId : String(3)
         @mandatory
